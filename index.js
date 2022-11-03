@@ -3,10 +3,15 @@ import 'dotenv/config'
 import express from 'express'
 
 import { router as userRouter } from './user/user-router.js'
-
+import cors from 'cors';
 /* create an express app and use JSON */
 const app = new express()
 app.use(express.json())
+
+let corsOptions = {
+    origin: '*'
+};
+app.use(cors(corsOptions))
 
 app.use('/user', userRouter)
 app.get('/', (req, res) => {

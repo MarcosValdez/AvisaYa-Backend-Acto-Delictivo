@@ -39,5 +39,3 @@ router.delete('/:id', async (req, res) => {
     await userRepository.remove(req.params.id)
     res.send({ entityId: req.params.id })
 })
-
-export default router;
