@@ -12,13 +12,15 @@ app.use('/user', userRouter)
 app.get('/', (req, res) => {
     //Respuesta a la peticion
     res.status(200).json({
-      gawr: 'Deploy exitoso'
+      gawr: 'Deploy exitoso nodemos'
     })
-  })
+})
 
 const puerto = process.env.PORT
+const ambiente =  process.env.NODE_ENV
 /* start the server */
 app.listen(puerto, () => {
     console.log(`La api esta en http://localhost:${puerto}`);
+    console.log(`la app esta corriendo en modo: ${ambiente}`);
   })
   
