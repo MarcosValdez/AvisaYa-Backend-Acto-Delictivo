@@ -3,6 +3,8 @@ import 'dotenv/config'
 import express from 'express'
 
 import { router as userRouter } from './router/user.router.js'
+import { router as crimeRepository } from './router/crime.router.js'
+
 
 import cors from 'cors';
 /* create an express app and use JSON */
@@ -16,9 +18,7 @@ app.use(cors(corsOptions))
 
 
 app.use('/user', userRouter)
-
-
-
+app.use('/crime', crimeRepository)
 
 app.get('/prueba', (req, res) => {
     //Respuesta a la peticion
@@ -36,3 +36,4 @@ app.listen(puerto, () => {
   })
 
 export default app;
+

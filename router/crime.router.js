@@ -1,10 +1,15 @@
-import { crimeRepository } from '../schemas/crime.schemas.js' 
-
 import { Router } from 'express'
+
+import { crimeRepository } from '../schemas/crime.schemas.js' 
 
 export const router = Router()
 
-router.post('/', async (req, res) => {
+router.get('/', async (req, res) => {
+    const crime = await crimeRepository.search().return.all()
+    res.send(crime)
+})
+
+router.post('/:id', async (req, res) => {
     const crime = [];
     crime.titulo = req.body.titulo ?? null
     crime.descripcion = req.body.descripcion ?? null
@@ -12,7 +17,7 @@ router.post('/', async (req, res) => {
     crime.lugar = req.body.lugar ?? null
     crime.referencia = req.body.referencia ?? null
     crime.evidencia = req.body.evidencia ?? null
-    crime.fechaCreacion = "req.body.fechaCreacion ?? null"
+    crime.fechaCreacion = req.body.fechaCreacion ?? null
     const registro = await crimeRepository.createAndSave(crime)
     res.send(registro)
 })
