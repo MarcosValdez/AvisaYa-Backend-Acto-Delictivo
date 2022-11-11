@@ -4,6 +4,13 @@ import { Router } from 'express'
 
 export const router = Router()
 
+router.get('/prueba', (req, res) => {
+    //Respuesta a la peticion
+    res.status(200).json({
+      gawr: 'user'
+    })
+})
+
 router.post('/', async (req, res) => {
     const user = [];
     user.usuario = req.body.usuario ?? null

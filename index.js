@@ -20,7 +20,7 @@ app.use('/user', userRouter)
 
 
 
-app.get('/', (req, res) => {
+app.get('/prueba', (req, res) => {
     //Respuesta a la peticion
     res.status(200).json({
       gawr: 'Deploy exitoso nodemos'
@@ -34,3 +34,5 @@ app.listen(puerto, () => {
     console.log(`La api esta en http://localhost:${puerto}`);
     console.log(`la app esta corriendo en modo: ${ambiente}`);
   })
+
+export default app;
