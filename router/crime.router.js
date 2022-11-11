@@ -17,7 +17,7 @@ router.post('/:id', async (req, res) => {
     crime.lugar = req.body.lugar ?? null
     crime.referencia = req.body.referencia ?? null
     crime.evidencia = req.body.evidencia ?? null
-    crime.fechaCreacion = "req.body.fechaCreacion ?? null"
+    crime.fechaCreacion = req.body.fechaCreacion ?? null
     const registro = await crimeRepository.createAndSave(crime)
     res.send(registro)
 })

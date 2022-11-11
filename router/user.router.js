@@ -10,7 +10,7 @@ router.post('/:id', async (req, res) => {
     user.edad = req.body.edad ?? null
     user.correo = req.body.correo ?? null
     user.contrasenia = req.body.contrasenia ?? null
-    user.fechaCreacion = "req.body.fechaCreacion ?? null"
+    user.fechaCreacion = req.body.fechaCreacion ?? null
     const registro = await userRepository.createAndSave(user)
     res.send(registro)
 })
