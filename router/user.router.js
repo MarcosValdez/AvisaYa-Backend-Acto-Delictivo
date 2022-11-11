@@ -1,10 +1,10 @@
-import { userRepository } from '../schemas/user.schemas.js' 
-
 import { Router } from 'express'
+
+import { userRepository } from '../schemas/user.schemas.js' 
 
 export const router = Router()
 
-router.post('/', async (req, res) => {
+router.post('/:id', async (req, res) => {
     const user = [];
     user.usuario = req.body.usuario ?? null
     user.edad = req.body.edad ?? null
@@ -39,4 +39,3 @@ router.delete('/:id', async (req, res) => {
     await userRepository.remove(req.params.id)
     res.send({ entityId: req.params.id })
 })
-

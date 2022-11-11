@@ -1,10 +1,15 @@
-import { crimeRepository } from '../schemas/crime.schemas.js' 
-
 import { Router } from 'express'
+
+import { crimeRepository } from '../schemas/crime.schemas.js' 
 
 export const router = Router()
 
-router.post('/', async (req, res) => {
+router.get('/', async (req, res) => {
+    const crime = await crimeRepository.search().return.all()
+    res.send(crime)
+})
+
+router.post('/:id', async (req, res) => {
     const crime = [];
     crime.titulo = req.body.titulo ?? null
     crime.descripcion = req.body.descripcion ?? null
