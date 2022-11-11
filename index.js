@@ -2,7 +2,7 @@ import 'dotenv/config'
 
 import express from 'express'
 
-import { router as userRouter } from './user/user-router.js'
+import { router as userRouter } from './routes/user-router.js'
 import cors from 'cors';
 /* create an express app and use JSON */
 const app = new express()
