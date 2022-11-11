@@ -1,4 +1,4 @@
-import { userRepository } from '../Schema/user.js' 
+import { userRepository } from '../schemas/user.schemas.js' 
 
 import { Router } from 'express'
 

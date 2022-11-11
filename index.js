@@ -2,7 +2,8 @@ import 'dotenv/config'
 
 import express from 'express'
 
-import { router as userRouter } from './routes/user-router.js'
+import { router as userRouter } from './router/user.router.js'
+
 import cors from 'cors';
 /* create an express app and use JSON */
 const app = new express()
@@ -13,7 +14,12 @@ let corsOptions = {
 };
 app.use(cors(corsOptions))
 
+
 app.use('/user', userRouter)
+
+
+
+
 app.get('/', (req, res) => {
     //Respuesta a la peticion
     res.status(200).json({
@@ -28,4 +34,3 @@ app.listen(puerto, () => {
     console.log(`La api esta en http://localhost:${puerto}`);
     console.log(`la app esta corriendo en modo: ${ambiente}`);
   })
-  
