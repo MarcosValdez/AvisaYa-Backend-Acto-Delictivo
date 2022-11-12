@@ -9,6 +9,16 @@ router.get('/', async (req, res) => {
     res.send(crime)
 })
 
+router.get('/:id', async (req, res) => {
+    const crime = await crimeRepository.fetch(req.params.id)
+    res.send(crime)
+})
+
+router.delete('/:id', async (req, res) => {
+    await crimeRepository.remove(req.params.id)
+    res.send({ entityId: req.params.id })
+})
+
 router.post('/:id', async (req, res) => {
     const crime = [];
     crime.titulo = req.body.titulo ?? null
@@ -20,11 +30,6 @@ router.post('/:id', async (req, res) => {
     crime.fechaCreacion = req.body.fechaCreacion ?? null
     const registro = await crimeRepository.createAndSave(crime)
     res.send(registro)
-})
-
-router.get('/:id', async (req, res) => {
-    const crime = await crimeRepository.fetch(req.params.id)
-    res.send(crime)
 })
 
 router.put('/:id', async (req, res) => {
@@ -41,9 +46,4 @@ router.put('/:id', async (req, res) => {
     await crimeRepository.save(crime)
 
     res.send(crime)
-})
-
-router.delete('/:id', async (req, res) => {
-    await crimeRepository.remove(req.params.id)
-    res.send({ entityId: req.params.id })
 })
