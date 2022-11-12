@@ -23,3 +23,7 @@ Para ejecutar el proyecto backend en modo desarrollo
 ```javascript
 npm run dev
 ```
+Para ejecutar las pruebas unitarias 
+```javascript
+npm run test
+```
