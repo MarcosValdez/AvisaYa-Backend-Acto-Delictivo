@@ -13,6 +13,7 @@ const crimeSchema = new Schema(Crime, {
     lugar: { type: 'string' },
     referencia: { type: 'string' },
     evidencia: { type: 'string' },
+    id_usuario: { type: 'string' }
 })
 
 /* usar el cliente para crear un Repositorio solo para usuarios */
