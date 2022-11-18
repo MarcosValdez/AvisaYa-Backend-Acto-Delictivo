@@ -4,7 +4,7 @@ import client from '../config/client.js'
 /* entidad de delitos */
 class Crime extends Entity {}
 
-/* creacion de un esquema para usuarios */
+/* creacion de un esquema para Actos delictivos */
 const crimeSchema = new Schema(Crime, {
     titulo: { type: 'string' },
     descripcion: { type: 'string' },
