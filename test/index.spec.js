@@ -1,10 +1,27 @@
-import {router} from '../router/user.router.js'
 import app from '../index.js'
-import request from 'supertest'
+import chai from 'chai'
+import request from 'request'
+import router from '../router/user.router.js'
 
-describe('GET /prueba', () => {
-    test('deberia responder con un codigo 200', async () =>{
-        const response = await request(app).get('/prueba').send()
-        expect(response.statusCode).toBe(200)
+const assert = chai.assert
+const expect = chai.expect
+const should = chai.should()
+
+const url = "http://localhost:8080";
+describe('Testing assert function: ', function() {
+    describe('Check addtest funtion', function(){
+        it("metodo prueba 1 GET", async() => {
+            let entpoint = url+"/prueba"
+            request(entpoint, function(error, response, body) {
+                expect(response.statusCode).to.equal(200);
+              });
+        })
+
+        it("metodo prueba 2 GET", async() => {
+            let entpoint = url+"/user/prueba"
+            request(entpoint, function(error, response, body) {
+                expect(response.statusCode).to.equal(200);
+              });
+        })
     })
 })

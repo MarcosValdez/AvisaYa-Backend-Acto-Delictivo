@@ -47,3 +47,5 @@ router.delete('/:id', async (req, res) => {
     await crimeRepository.remove(req.params.id)
     res.send({ entityId: req.params.id })
 })
+
+export default router;

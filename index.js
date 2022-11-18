@@ -19,6 +19,12 @@ app.use(cors(corsOptions))
 
 app.use('/user', userRouter)
 app.use('/crime', crimeRepository)
+app.get('/prueba', (req, res) => {
+  //Respuesta a la peticion
+  res.status(200).json({
+    gawr: 'Deploy exitoso nodemos'
+  })
+})
 
 const puerto = process.env.PORT
 const ambiente =  process.env.NODE_ENV
