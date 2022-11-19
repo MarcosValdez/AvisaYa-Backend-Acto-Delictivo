@@ -30,6 +30,7 @@
     "sonarqube-scanner": "^2.8.2"
   },
   "devDependencies": {
+    "chai-http": "^4.3.0",
     "chai": "^4.3.7",
     "mocha": "^10.1.0",
     "nodemon": "^2.0.20",

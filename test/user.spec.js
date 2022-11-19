@@ -1,18 +1,26 @@
 import chai from 'chai'
-import request from 'request'
+import chaiHttp from 'chai-http';
 
-const assert = chai.assert
+chai.use(chaiHttp);
 const expect = chai.expect
-const should = chai.should()
+const url = "http://localhost:8080/user";
 
-const url = "http://localhost:8080";
 describe('Testing user enpoint: ', function() {
     describe('Check addtest funtion', function(){
-        it("metodo prueba user 2 GET", async() => {
-            let entpoint = url+"/user/prueba"
-            request(entpoint, function(error, response, body) {
-                expect(response.statusCode).to.equal(200);
-              });
-        })
+        it('se deberia insertar un usuario', (done) => {
+            chai.request(url)
+            .post('/registro')
+            .send({ usuario: "user prueba v1",
+                    edad: "24",
+                    correo: "user_prueba_v1",
+                    contrasenia: "user_prueba_v1",
+                    fechaCreacion: "user_prueba_v1"
+                })
+            .end( (err,res) =>{
+                console.log(res.body)
+                expect(res).to.have.status(200);
+                done();
+            });
+        });
     })
 })
