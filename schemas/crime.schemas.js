@@ -8,11 +8,11 @@ class Crime extends Entity {}
 const crimeSchema = new Schema(Crime, {
     titulo: { type: 'string' },
     descripcion: { type: 'string' },
-    fecha: { type: 'string' },
     hora: { type: 'string' },
     lugar: { type: 'string' },
     referencia: { type: 'string' },
     evidencia: { type: 'string' },
+    fechaCreacion: { type: 'string' },
     id_usuario: { type: 'string' }
 })
 

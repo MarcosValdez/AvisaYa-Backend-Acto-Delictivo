@@ -4,12 +4,24 @@ import { crimeRepository } from '../schemas/crime.schemas.js'
 
 export const router = Router()
 
-router.get('/', async (req, res) => {
+router.get('/prueba', (req, res) => {
+    //Respuesta a la peticion
+    res.status(200).json({
+      gawr: 'Deploy exitoso nodemos'
+    })
+})
+
+router.get('/buscar/:id', async (req, res) => {
+    const crime = await crimeRepository.fetch(req.params.id)
+    res.send(crime)
+})
+
+router.get('/todos', async (req, res) => {
     const crime = await crimeRepository.search().return.all()
     res.send(crime)
 })
 
-router.post('/:id', async (req, res) => {
+router.post('/registro', async (req, res) => {
     const crime = [];
     crime.titulo = req.body.titulo ?? null
     crime.descripcion = req.body.descripcion ?? null
@@ -18,16 +30,12 @@ router.post('/:id', async (req, res) => {
     crime.referencia = req.body.referencia ?? null
     crime.evidencia = req.body.evidencia ?? null
     crime.fechaCreacion = req.body.fechaCreacion ?? null
+    crime.id_usuario = req.body.fechaCreacion ?? null
     const registro = await crimeRepository.createAndSave(crime)
     res.send(registro)
 })
 
-router.get('/:id', async (req, res) => {
-    const crime = await crimeRepository.fetch(req.params.id)
-    res.send(crime)
-})
-
-router.put('/:id', async (req, res) => {
+router.put('/actualizar/:id', async (req, res) => {
 
     const crime = await crimeRepository.fetch(req.params.id)
 
@@ -43,7 +51,7 @@ router.put('/:id', async (req, res) => {
     res.send(crime)
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/eliminar/:id', async (req, res) => {
     await crimeRepository.remove(req.params.id)
     res.send({ entityId: req.params.id })
 })
