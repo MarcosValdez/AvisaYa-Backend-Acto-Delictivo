@@ -52,7 +52,7 @@ router.put('/actualizar/:id', async (req, res) => {
 })
 
 router.delete('/eliminar/:id', async (req, res) => {
-  await crimeRepository.remove(req.params.id)
+  await crimeRepository.dropIndex(req.params.id)
   res.send({ entityId: req.params.id })
 })
 
