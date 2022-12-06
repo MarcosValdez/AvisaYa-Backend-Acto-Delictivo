@@ -20,7 +20,7 @@ jobs:
     - name: Use Node.js 
       uses: actions/setup-node@v3
       with:
-        super_secret: ${{ secrets.REDIS_URL }}
+        REDIS_URL: ${{ secrets.REDIS_URL }}
         node-version: '16.x'
         cache: 'npm'
     - run: npm ci
