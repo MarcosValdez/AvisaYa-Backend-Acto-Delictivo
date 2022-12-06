@@ -28,10 +28,10 @@ jobs:
         node-version: '16.x'
         cache: 'npm'
     - name: Start Redis
-      uses: supercharge/redis-github-action@1.4.0
+      uses: shogo82148/actions-setup-redis@v1
       with:
         redis-version: ${{ matrix.redis-version }}
-        redis-port: 16024
+        auto-start: "true"
     - run: npm ci
     - run: npm run build --if-present
     - run: npm run test
