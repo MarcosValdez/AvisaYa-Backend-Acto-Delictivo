@@ -21,6 +21,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         REDIS_URL: ${{ secrets.REDIS_URL }}
+        PORT: ${{ secrets.PORT }}
         node-version: '16.x'
         cache: 'npm'
     - run: npm ci
