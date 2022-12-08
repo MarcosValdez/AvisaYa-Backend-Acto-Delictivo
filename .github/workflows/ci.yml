@@ -39,8 +39,9 @@ jobs:
       uses: c-hive/gha-npm-cache@v1
 
     - name: Install packages
-      run: npm ci
-    - run: npm run build --if-present
+      run: npm install
+
+    - run: npm run build 
     
     - name: Run all tests
       run: npm test
