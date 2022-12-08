@@ -15,21 +15,35 @@ jobs:
     container: node:16-bullseye
     # Service containers to run with `container-job`
     services:
-      # Label used to access the service container
       redis:
-        # Docker Hub image
-        image: redis
+        image: redis/redis-stack-server:latest
         ports:
           - 6379:6379
+        options: >-
+          --health-cmd "redis-cli PING"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v3
+
     - name: Use Node.js 
       uses: actions/setup-node@v3
       with:
         node-version: '16.x'
         cache: 'npm'
-    - run: npm ci
+
+    - name: Cache dependencies
+      uses: c-hive/gha-npm-cache@v1
+
+    - name: Install packages
+      run: npm ci
     - run: npm run build --if-present
-    - run: npm test
-    - run: npm run lint -- --fix
+    
+    - name: Run all tests
+      run: npm test
+    
+    - name: Run eslint
+      run: npm run lint -- --fix
