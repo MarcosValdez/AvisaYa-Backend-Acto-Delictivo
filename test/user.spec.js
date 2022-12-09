@@ -5,6 +5,7 @@ chai.use(chaiHttp)
 const expect = chai.expect
 const url = 'http://localhost:8080/user'
 
+// eslint-disable-next-line no-unused-vars
 let idUser = ''
 
 describe('Testing user enpoint: ', function() {
@@ -25,7 +26,7 @@ describe('Testing user enpoint: ', function() {
         })
     })
 
-    it('Se deberia buscar un usuario: ', (done) => {
+    /* it('Se deberia buscar un usuario: ', (done) => {
       chai.request(url)
         .get('/buscar/'+idUser)
         .end( (err,res) =>{
@@ -58,6 +59,6 @@ describe('Testing user enpoint: ', function() {
           expect(res).to.have.status(200)
           done()
         })
-    })
+    }) */
   })
 })

@@ -33,7 +33,7 @@ describe('Testing crime enpoint: ', function() {
     })
 
         
-    it('Se deberia buscar un Acto Delictivo: ', (done) => {
+    /* it('Se deberia buscar un Acto Delictivo: ', (done) => {
       chai.request(url)
         .get('/buscar/'+idCrime)
         .end( (err,res) =>{
@@ -78,7 +78,7 @@ describe('Testing crime enpoint: ', function() {
           expect(res).to.have.status(200)
           done()
         })
-    })
+    }) */
 
   })
 })
