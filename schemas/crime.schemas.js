@@ -20,4 +20,4 @@ const crimeSchema = new Schema(Crime, {
 export const crimeRepository = client.fetchRepository(crimeSchema)
 
 /* crear el índice para usuario */
-await crimeRepository.createIndex()
+/* await crimeRepository.createIndex() */
