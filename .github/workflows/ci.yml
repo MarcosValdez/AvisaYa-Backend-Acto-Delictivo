@@ -12,18 +12,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: node:16-bullseye
-    # Service containers to run with `container-job`
-    services:
-      redis:
-        image: redis/redis-stack-server:latest
-        ports:
-          - 6379:6379
-        options: >-
-          --health-cmd "redis-cli PING"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+        redis-version: [ 5, 6]
 
     steps:
     - name: Checkout
@@ -35,11 +27,13 @@ jobs:
         node-version: '16.x'
         cache: 'npm'
 
-    - name: Cache dependencies
-      uses: c-hive/gha-npm-cache@v1
+    - name: Start Redis
+      uses: supercharge/redis-github-action@1.4.0
+      with:
+        redis-version: ${{ matrix.redis-version }}
 
     - name: Install packages
-      run: npm install
+      run: npm ci
       
     - run: npm run build --if-present
     

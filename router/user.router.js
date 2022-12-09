@@ -43,7 +43,7 @@ router.put('/actualizar/:id', async (req, res) => {
 })
 
 router.delete('/eliminar/:id', async (req, res) => {
-  await userRepository.dropIndex(req.params.id)
+  await userRepository.remove(req.params.id)
   res.send({ entityId: req.params.id })
 })
 
