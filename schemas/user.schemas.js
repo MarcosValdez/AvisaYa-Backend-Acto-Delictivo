@@ -17,4 +17,4 @@ const userSchema = new Schema(User, {
 export const userRepository = client.fetchRepository(userSchema)
 
 /* crear el índice para usuario */
-await userRepository.createIndex()
+/* await userRepository.createIndex() */
