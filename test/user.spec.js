@@ -51,13 +51,13 @@ describe('Testing user enpoint: ', function() {
         })
     })
 
-    /* it('Se deberia eliminar un usuario: ', (done) => {
+    it('Se deberia eliminar un usuario: ', (done) => {
       chai.request(url)
         .del('/eliminar/'+idUser)
         .end( (err,res) =>{
           expect(res).to.have.status(200)
           done()
         })
-    }) */
+    })
   })
 })
