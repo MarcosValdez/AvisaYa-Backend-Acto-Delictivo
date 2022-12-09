@@ -71,14 +71,14 @@ describe('Testing crime enpoint: ', function() {
         })
     })
 
-    it('Se deberia eliminar un Acto Delictivo: ', (done) => {
+    /* it('Se deberia eliminar un Acto Delictivo: ', (done) => {
       chai.request(url)
         .del('/eliminar/'+idCrime)
         .end( (err,res) =>{
           expect(res).to.have.status(200)
           done()
         })
-    })
+    }) */
 
   })
 })
