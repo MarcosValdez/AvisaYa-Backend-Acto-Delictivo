@@ -12,9 +12,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        redis-version: [3, 5]
 
     steps:
     - name: Checkout
@@ -26,10 +23,9 @@ jobs:
         node-version: '16.x'
         cache: 'npm'
 
-    - name: Start Redis
-      uses: supercharge/redis-github-action@1.4.0
-      with:
-        redis-version: ${{ matrix.redis-version }}
+      env:
+          # The hostname used to communicate with the Redis service container
+          REDIS_URL: ${{ secrets.REDIS_URL }}
 
     - name: Install packages
       run: npm ci
