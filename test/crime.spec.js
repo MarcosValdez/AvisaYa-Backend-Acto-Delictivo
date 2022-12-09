@@ -13,7 +13,7 @@ let idCrime = ''
 describe('Testing crime enpoint: ', function() {
   describe('Verificaion de metodos CRUD', function(){
 
-    it('Se deberia registrar un Acto Delictivo: ', (done) => {
+    /* it('Se deberia registrar un Acto Delictivo: ', (done) => {
       chai.request(url)
         .post('/registro')
         .send({ titulo: 'crime prueba registro',
@@ -30,7 +30,7 @@ describe('Testing crime enpoint: ', function() {
           expect(res).to.have.status(200)
           done()
         })
-    })
+    }) */
 
         
     /* it('Se deberia buscar un Acto Delictivo: ', (done) => {

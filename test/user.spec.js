@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import chai from 'chai'
 import chaiHttp from 'chai-http'
 
@@ -10,7 +11,7 @@ let idUser = ''
 
 describe('Testing user enpoint: ', function() {
   describe('Verificaion de metodos CRUD', function(){
-    it('Se deberia registrar un usuario: ', (done) => {
+    /* it('Se deberia registrar un usuario: ', (done) => {
       chai.request(url)
         .post('/registro')
         .send({ usuario: 'user prueba v2',
@@ -24,7 +25,7 @@ describe('Testing user enpoint: ', function() {
           expect(res).to.have.status(200)
           done()
         })
-    })
+    }) */
 
     /* it('Se deberia buscar un usuario: ', (done) => {
       chai.request(url)
