@@ -1,0 +1,43 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" , "develop"]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        redis-version: [4, 5, 6]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Use Node.js 
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+        cache: 'npm'
+
+    - name: Install packages
+      run: npm ci
+
+    - name: Connect to Redis
+        # Runs a script that creates a Redis client, populates
+        # the client with data, and retrieves data
+        run: node config/client.js
+        # Environment variable used by the `client.js` script to create a new Redis client.
+        env:
+          # The hostname used to communicate with the Redis service container
+          REDIS_URL: redis://:dPjPxAM3OputhNRksKjHqiwRqODvHFhl@redis-16024.c299.asia-northeast1-1.gce.cloud.redislabs.com:16024
+          # The default Redis port
+    
+    - name: Run all tests
+      run: npm test
+    
+    - name: Run eslint
+      run: npm run lint -- --fix
