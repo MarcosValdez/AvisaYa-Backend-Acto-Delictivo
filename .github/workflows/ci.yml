@@ -25,12 +25,18 @@ jobs:
       run: npm ci
       
     - run: npm run build --if-present
+
+    - name: Connect to Redis
+        # Runs a script that creates a Redis client, populates
+        # the client with data, and retrieves data
+      run: node ./config/client.js
+        # Environment variable used by the `client.js` script to create a new Redis client.
+      with:
+          # The hostname used to communicate with the Redis service container
+        REDIS_URL: redis://default:dPjPxAM3OputhNRksKjHqiwRqODvHFhl@redis-16024.c299.asia-northeast1-1.gce.cloud.redislabs.com:16024
     
     - name: Run all tests
       run: npm test
-      with:
-        redis-url: ${{ secrets.REDIS_URL }}
-
     
     - name: Run eslint
       run: npm run lint -- --fix
