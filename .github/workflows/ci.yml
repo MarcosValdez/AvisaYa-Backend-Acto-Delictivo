@@ -45,7 +45,8 @@ jobs:
         # Environment variable used by the `client.js` script to create a new Redis client.
       env:
           # The hostname used to communicate with the Redis service container
-        url: redis://:dPjPxAM3OputhNRksKjHqiwRqODvHFhl@redis-16024.c299.asia-northeast1-1.gce.cloud.redislabs.com:16024
+        REDIS_HOST: redis
+        REDIS_PORT: 6379
     
     - name: Run all tests
       run: npm test
