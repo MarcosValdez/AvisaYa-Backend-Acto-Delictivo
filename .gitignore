@@ -220,4 +220,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Coverage
+.nyc_output/
+coverage/
+
 # End of https://www.toptal.com/developers/gitignore/api/linux,macos,windows,redis,node
