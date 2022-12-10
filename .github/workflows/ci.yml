@@ -34,7 +34,8 @@ jobs:
       env:
           # The hostname used to communicate with the Redis service container
         REDIS_URL: redis://default:dPjPxAM3OputhNRksKjHqiwRqODvHFhl@redis-16024.c299.asia-northeast1-1.gce.cloud.redislabs.com:16024
-    
+        PORT: 8080
+
     - name: Run all tests
       run: npm test
     
