@@ -1,43 +1,44 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI
-
-on:
-  push:
-    branches: [ "main" , "develop"]
+name: Redis container example
+on: push
 
 jobs:
-  build:
+  # Label of the container job
+  container-job:
+    # Containers must run in Linux based operating systems
     runs-on: ubuntu-latest
+    # Docker Hub image that `container-job` executes in
+    container: node:10.18-jessie
+
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      redis:
+        # Docker Hub image
+        image: redis
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      # Downloads a copy of the code in your repository before running CI tests
+      - name: Check out repository code
+        uses: actions/checkout@v3
 
-    - name: Use Node.js 
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16.x'
-        cache: 'npm'
+      # Performs a clean installation of all dependencies in the `package.json` file
+      # For more information, see https://docs.npmjs.com/cli/ci.html
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Install packages
-      run: npm install
-      
-    - run: npm run build --if-present
-
-    - name: Connect to Redis
+      - name: Connect to Redis
         # Runs a script that creates a Redis client, populates
         # the client with data, and retrieves data
-      run: node ./config/client.js
+        run: node client.js
         # Environment variable used by the `client.js` script to create a new Redis client.
-      env:
+        env:
           # The hostname used to communicate with the Redis service container
-        REDIS_URL: redis://default:dPjPxAM3OputhNRksKjHqiwRqODvHFhl@redis-16024.c299.asia-northeast1-1.gce.cloud.redislabs.com:16024
-        PORT: 8080
-
-    - name: Run all tests
-      run: npm test
-    
-    - name: Run eslint
-      run: npm run lint -- --fix
+          REDIS_HOST: redis
+          # The default Redis port
+          REDIS_PORT: 6379
