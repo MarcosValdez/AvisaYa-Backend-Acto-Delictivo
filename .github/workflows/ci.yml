@@ -29,9 +29,9 @@ jobs:
     - name: Run all tests
       run: npm test
       with:
-        REDIS_URL: ${{ secrets.REDIS_URL }}
+        redis-url: ${{ secrets.REDIS_URL }}
       env: 
-        REDIS_URL: ${{ secrets.REDIS_URL }}
+        REDIS_URL: redis-url
 
     
     - name: Run eslint
