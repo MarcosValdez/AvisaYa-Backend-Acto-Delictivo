@@ -5,6 +5,8 @@ import { userRepository } from '../schemas/user.schemas.js'
 export const router = Router()
 
 /**/
+import bcrypt from 'bcrypt'
+
 import express from 'express'
 import jwt from 'jsonwebtoken'
 import 'dotenv/config'
@@ -29,7 +31,18 @@ router.post('/registro', async (req, res) => {
   user.correo = req.body.correo ?? null
   user.contrasenia = req.body.contrasenia ?? null
   user.fechaCreacion = req.body.fechaCreacion ?? null
-  const registro = await userRepository.createAndSave(user)
+
+  //Encriptar contraseña
+  const saltRounds = 10
+  const passwordHash = await bcrypt.hash(user.contrasenia, saltRounds)
+  const user_new = []
+  user_new.usuario = user.usuario
+  user_new.edad = user.edad
+  user_new.correo = user.correo
+  user_new.contrasenia = passwordHash
+  user_new.fechaCreacion = user.fechaCreacion
+
+  const registro = await userRepository.createAndSave(user_new)
   res.send(registro)
 })
 
@@ -65,6 +78,17 @@ function validateToken(req, res, next){
     }
   })
 }
+
+
+router.get('/:correo/:password', async (req, res) => {
+  const correo = req.params.correo
+  const users = await userRepository.search()
+    .where('correo').equals(correo).return.all()
+
+
+  res.send(users)
+})
+
 
 /* */
 router.get('/buscar/:id', validateToken,  async (req, res) => {
