@@ -4,8 +4,7 @@ on:
     branches: [ "main" , "develop"]
 
 jobs:
-  build:
-
+  node_ci:
     runs-on: ubuntu-latest
 
     steps:
