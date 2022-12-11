@@ -14,6 +14,11 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
 
+      - name: create env file
+        run: |
+          touch .env
+          echo REDIS_URL=${{secrets.REDIS_URL}} >> .env
+
       - name: Use Node.js 
         uses: actions/setup-node@v3
         with:
@@ -24,7 +29,7 @@ jobs:
       # For more information, see https://docs.npmjs.com/cli/ci.html
       - name: Install dependencies
         run: npm ci
-        
+
       - name: testing
         run: npm test
         env:
