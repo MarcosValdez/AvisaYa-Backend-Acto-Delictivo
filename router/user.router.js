@@ -70,6 +70,7 @@ function generateAccessToken(user){
   return jwt.sign(user, process.env.SECRET_TOKEN, {expiresIn: '10min'})
 }
 /* */
+// eslint-disable-next-line no-unused-vars
 function validateToken(req, res, next){
   const accessToken = req.headers['authorization'] || req.query.accessToken
   if(!accessToken) res.send('Access denied')
@@ -83,7 +84,7 @@ function validateToken(req, res, next){
 }
 /* */
 
-router.get('/buscar/:id', validateToken,  async (req, res) => {
+router.get('/buscar/:id',  async (req, res) => {
   const user = await userRepository.fetch(req.params.id)
   res.send(user)
 })
@@ -103,7 +104,7 @@ router.put('/actualizar/:id', async (req, res) => {
   res.send(user)
 })
 
-router.delete('/eliminar/:id', validateToken, async (req, res) => {
+router.delete('/eliminar/:id', async (req, res) => {
   await userRepository.remove(req.params.id)
   res.send({ entityId: req.params.id })
 })

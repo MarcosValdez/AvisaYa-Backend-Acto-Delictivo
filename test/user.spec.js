@@ -5,7 +5,7 @@ import chaiHttp from 'chai-http'
 
 chai.use(chaiHttp)
 const expect = chai.expect
-const url = 'http://localhost:8080/user'
+const url = 'http://localhost:8080/api/user'
 
 let idUser = ''
 
@@ -14,7 +14,8 @@ describe('Testing user enpoint: ', function() {
     it('Se deberia registrar un usuario: ', (done) => {
       chai.request(url)
         .post('/registro')
-        .send({ usuario: 'user prueba v2',
+        .send({ 
+          usuario: 'user prueba v2',
           edad: '24',
           correo: 'user_prueba_v2',
           contrasenia: 'user_prueba_v2',

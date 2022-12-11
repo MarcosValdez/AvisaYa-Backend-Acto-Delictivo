@@ -5,7 +5,7 @@ import chaiHttp from 'chai-http'
 
 chai.use(chaiHttp)
 const expect = chai.expect
-const url = 'http://localhost:8080/crime'
+const url = 'http://localhost:8080/api/crime'
 
 let idCrime = ''
 
