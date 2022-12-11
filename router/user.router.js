@@ -4,12 +4,6 @@ import { userRepository } from '../schemas/user.schemas.js'
 
 export const router = Router()
 
-router.get('/prueba', (req, res) => {
-  //Respuesta a la peticion
-  res.status(200).json({
-    gawr: 'Deploy exitoso nodemos'
-  })
-})
 
 router.post('/registro', async (req, res) => {
   const user = []

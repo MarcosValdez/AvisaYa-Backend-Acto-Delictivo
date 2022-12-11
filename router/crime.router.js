@@ -4,13 +4,6 @@ import { crimeRepository } from '../schemas/crime.schemas.js'
 
 export const router = Router()
 
-router.get('/prueba', (req, res) => {
-  //Respuesta a la peticion
-  res.status(200).json({
-    gawr: 'Deploy exitoso nodemos'
-  })
-})
-
 router.get('/buscar/:id', async (req, res) => {
   const crime = await crimeRepository.fetch(req.params.id)
   res.send(crime)
