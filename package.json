@@ -7,8 +7,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=DESARROLLO nodemon index.js",
     "start": "cross-env NODE_ENV=PRODUCCION node index.js",
-    "test": "cross-env NODE_ENV=TEST mocha ./test --exit",
-    "coverage": "cross-env NODE_ENV=COVERAGE c8 mocha ./test/*.js --exit",
+    "test": "cross-env NODE_ENV=TEST mocha ./app/test --exit",
+    "coverage": "cross-env NODE_ENV=COVERAGE c8 mocha ./app/test/*.js --exit",
     "lint": "eslint ."
   },
   "repository": {

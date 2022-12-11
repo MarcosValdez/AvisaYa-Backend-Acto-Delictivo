@@ -3,8 +3,8 @@ import 'dotenv/config'
 
 import express from 'express'
 
-import { router as userRouter } from './router/user.router.js'
-import { router as crimeRepository } from './router/crime.router.js'
+import { router as userRouter } from './app/router/user.router.js'
+import { router as crimeRepository } from './app/router/crime.router.js'
 
 
 import cors from 'cors'
@@ -17,6 +17,7 @@ let corsOptions = {
 }
 app.use(cors(corsOptions))
 
+/* app.use('/api/', require('./app/routes')) */
 app.use('/api/user', userRouter)
 app.use('/api/crime', crimeRepository)
 
