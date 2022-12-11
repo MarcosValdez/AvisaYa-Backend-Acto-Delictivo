@@ -4,9 +4,8 @@ import { userRepository } from '../schemas/user.schemas.js'
 
 export const router = Router()
 
-/**/
 import bcrypt from 'bcrypt'
-
+/**/
 import express from 'express'
 import jwt from 'jsonwebtoken'
 import 'dotenv/config'
@@ -48,25 +47,40 @@ router.post('/registro', async (req, res) => {
 
 /**/
 router.post('/auth',async (req, res) => {
-  const {username, password} = req.body;
+  
+  const user_auth = []
+  user_auth.correo = req.body.correo ?? null
+  user_auth.contrasenia = req.body.contrasenia ?? null
 
   //Consultar BD y validar que existen tanto
-  //username como password
-  const user = {username: username};
-  const accessToken = generateAccessToken(user);
+  const user_data = await userRepository.search()
+    .where('correo').equals(user_auth.correo).return.all()
 
+  //Password
+  let passwordHash = user_data[0] ? user_data[0].contrasenia : false
+  const passwordCorrect = user_data[0] === undefined ? false : await bcrypt.compare(user_auth.contrasenia, passwordHash)
+
+  if (!(user_data && passwordCorrect)) {
+    return res.status(401).json({
+      error: 'invalid user or password'
+    })
+  }
+
+  //username como password
+  const user_token = {username: user_data[0].usuario };
+  const accessToken = generateAccessToken(user_token);
+  /*Revisar */
   res.header('authorization',accessToken).json({
     message: 'Usuario autenticado',
+    user: user_data[0],
     token: accessToken
   })
-
 })
 
 function generateAccessToken(user){
   return jwt.sign(user, process.env.SECRET_TOKEN, {expiresIn: '10min'});
 }
 /* */
-
 function validateToken(req, res, next){
   const accessToken = req.headers['authorization'] || req.query.accessToken;
   if(!accessToken) res.send('Access denied');
@@ -78,19 +92,8 @@ function validateToken(req, res, next){
     }
   })
 }
-
-
-router.get('/:correo/:password', async (req, res) => {
-  const correo = req.params.correo
-  const users = await userRepository.search()
-    .where('correo').equals(correo).return.all()
-
-
-  res.send(users)
-})
-
-
 /* */
+
 router.get('/buscar/:id', validateToken,  async (req, res) => {
   const user = await userRepository.fetch(req.params.id)
   res.send(user)
