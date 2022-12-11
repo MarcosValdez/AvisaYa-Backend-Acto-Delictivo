@@ -21,7 +21,7 @@ app.use(cors(corsOptions))
 app.use('/user', userRouter)
 app.use('/crime', crimeRepository)
 
-const puerto = process.env.PORT
+const puerto = 8080
 const ambiente =  process.env.NODE_ENV
 /* start the server */
 app.listen(puerto, () => {
