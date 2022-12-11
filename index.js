@@ -17,9 +17,8 @@ let corsOptions = {
 }
 app.use(cors(corsOptions))
 
-
-app.use('/user', userRouter)
-app.use('/crime', crimeRepository)
+app.use('/api/user', userRouter)
+app.use('/api/crime', crimeRepository)
 
 const puerto = process.env.PORT
 const ambiente =  process.env.NODE_ENV

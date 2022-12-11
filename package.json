@@ -23,10 +23,12 @@
   },
   "homepage": "https://github.com/MarcosValdez/AvisaYa-Backend-Acto-Delictivo#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
     "redis": "^4.5.1",
     "redis-om": "^0.2.0",
     "sonarqube-scanner": "^2.8.2"

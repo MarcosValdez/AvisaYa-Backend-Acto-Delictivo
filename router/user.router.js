@@ -4,7 +4,18 @@ import { userRepository } from '../schemas/user.schemas.js'
 
 export const router = Router()
 
-router.get('/prueba', (req, res) => {
+/**/
+import express from 'express'
+import jwt from 'jsonwebtoken'
+import 'dotenv/config'
+
+// capturar body
+const app = new express()
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+/**/
+
+router.get('/prueba', validateToken, (req, res) => {
   //Respuesta a la peticion
   res.status(200).json({
     gawr: 'Deploy exitoso nodemos'
@@ -22,7 +33,41 @@ router.post('/registro', async (req, res) => {
   res.send(registro)
 })
 
-router.get('/buscar/:id', async (req, res) => {
+/**/
+router.post('/auth',async (req, res) => {
+  const {username, password} = req.body;
+
+  //Consultar BD y validar que existen tanto
+  //username como password
+  const user = {username: username};
+  const accessToken = generateAccessToken(user);
+
+  res.header('authorization',accessToken).json({
+    message: 'Usuario autenticado',
+    token: accessToken
+  })
+
+})
+
+function generateAccessToken(user){
+  return jwt.sign(user, process.env.SECRET_TOKEN, {expiresIn: '10min'});
+}
+/* */
+
+function validateToken(req, res, next){
+  const accessToken = req.headers['authorization'] || req.query.accessToken;
+  if(!accessToken) res.send('Access denied');
+  jwt.verify(accessToken, process.env.SECRET_TOKEN, (err, user) =>{
+    if(err){
+      res.send('Access denied, token expired or incorrect');
+    }else{
+      next();
+    }
+  })
+}
+
+/* */
+router.get('/buscar/:id', validateToken,  async (req, res) => {
   const user = await userRepository.fetch(req.params.id)
   res.send(user)
 })
@@ -42,7 +87,7 @@ router.put('/actualizar/:id', async (req, res) => {
   res.send(user)
 })
 
-router.delete('/eliminar/:id', async (req, res) => {
+router.delete('/eliminar/:id', validateToken, async (req, res) => {
   await userRepository.remove(req.params.id)
   res.send({ entityId: req.params.id })
 })
