@@ -27,3 +27,8 @@ Para ejecutar las pruebas unitarias
 ```javascript
 npm run test
 ```
+
+Para observar la cobertura 
+```javascript
+npm run coverage
+```
