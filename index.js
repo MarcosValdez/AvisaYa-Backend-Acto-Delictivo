@@ -1,13 +1,9 @@
 /* eslint-disable no-console */
 import 'dotenv/config'
-
 import express from 'express'
-
-import { router as userRouter } from './app/router/user.router.js'
-import { router as crimeRepository } from './app/router/crime.router.js'
-
-
 import cors from 'cors'
+import router from './app/router/root.router.js'
+
 /* create an express app and use JSON */
 const app = new express()
 app.use(express.json())
@@ -17,9 +13,7 @@ let corsOptions = {
 }
 app.use(cors(corsOptions))
 
-/* app.use('/api/', require('./app/routes')) */
-app.use('/api/user', userRouter)
-app.use('/api/crime', crimeRepository)
+app.use('/api', router)
 
 const puerto = 8080
 const ambiente =  process.env.NODE_ENV

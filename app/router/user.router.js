@@ -3,7 +3,7 @@ import { Router } from 'express'
 import express from 'express'
 import 'dotenv/config'
 
-export const router = Router()
+const router = Router()
 
 const app = new express()
 app.use(express.urlencoded({ extended: false }))
