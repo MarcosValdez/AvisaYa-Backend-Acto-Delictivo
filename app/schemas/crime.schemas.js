@@ -12,6 +12,7 @@ const crimeSchema = new Schema(Crime, {
   lugar: { type: 'string' },
   evidencia: { type: 'string' },
   fecha: { type:'string' },
+  categoria: { type: 'string' },
   fechaCreacion: { type: 'string' },
   id_usuario: { type: 'string' }
 })
