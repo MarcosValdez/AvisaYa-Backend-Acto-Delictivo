@@ -6,7 +6,6 @@ import jwt from 'jsonwebtoken'
 const registroUser = async (req, res) => {
   const user = []
   user.usuario = req.body.usuario ?? null
-  user.edad = req.body.edad ?? null
   user.correo = req.body.correo ?? null
   user.contrasenia = req.body.contrasenia ?? null
   user.fechaCreacion = req.body.fechaCreacion ?? null
@@ -16,7 +15,6 @@ const registroUser = async (req, res) => {
   const passwordHash = await bcrypt.hash(user.contrasenia, saltRounds)
   const user_new = []
   user_new.usuario = user.usuario
-  user_new.edad = user.edad
   user_new.correo = user.correo
   user_new.contrasenia = passwordHash
   user_new.fechaCreacion = user.fechaCreacion
@@ -34,7 +32,6 @@ const actualizarUser = async (req, res) => {
   const user = await userRepository.fetch(req.params.id)
     
   user.usuario = req.body.usuario ?? null
-  user.edad = req.body.edad ?? null
   user.correo = req.body.correo ?? null
   user.contrasenia = req.body.contrasenia ?? null
   user.fechaCreacion = req.body.fechaCreacion ?? null

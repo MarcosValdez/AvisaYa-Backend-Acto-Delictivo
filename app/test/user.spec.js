@@ -16,7 +16,6 @@ describe('Testing user enpoint: ', function() {
         .post('/registro')
         .send({ 
           usuario: 'user prueba v2',
-          edad: '24',
           correo: 'user_prueba_v2',
           contrasenia: 'user_prueba_v2',
           fechaCreacion: 'user_prueba_v2'
@@ -41,14 +40,14 @@ describe('Testing user enpoint: ', function() {
     it('Se deberia actualizar un usuario: ', (done) => {
       chai.request(url)
         .put('/actualizar/'+idUser)
-        .send({ usuario: 'user prueba v3',
-          edad: '50',
+        .send({ 
+          usuario: 'user_prueba_v3',
           correo: 'user_prueba_v3',
           contrasenia: 'user_prueba_v3',
           fechaCreacion: 'user_prueba_v3'
         })
         .end( (err,res) =>{
-          expect(res.body).to.have.property('edad').to.be.equal('50')
+          expect(res.body).to.have.property('usuario').to.be.equal('user_prueba_v3')
           expect(res).to.have.status(200)
           done()
         })
