@@ -20,6 +20,7 @@ describe('Testing crime enpoint: ', function() {
           descripcion: 'crime prueba registro',
           hora: 'crime prueba registro',
           lugar: 'crime prueba registro',
+          fecha: '22-12-2022',
           evidencia: 'crime prueba registro',
           fechaCreacion: 'crime prueba registro',
           id_usuario: 'id usuario prueba'
@@ -58,6 +59,7 @@ describe('Testing crime enpoint: ', function() {
           descripcion: 'crime prueba actualizar',
           hora: 'crime prueba actualizar',
           lugar: 'Lugar 1',
+          fecha: '23-12-2022',
           evidencia: 'crime prueba actualizar',
           fechaCreacion: 'crime prueba actualizar',
           id: 'id crime prueba actualizar'
