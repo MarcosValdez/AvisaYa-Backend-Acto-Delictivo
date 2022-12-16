@@ -31,7 +31,6 @@ const actualizarCrime = async (req, res) => {
   crime.descripcion = req.body.descripcion ?? null
   crime.hora = req.body.hora ?? null
   crime.lugar = req.body.lugar ?? null
-  crime.referencia = req.body.referencia ?? null
   crime.evidencia = req.body.evidencia ?? null
   crime.fechaCreacion = req.body.fechaCreacion ?? null
   await crimeRepository.save(crime)
