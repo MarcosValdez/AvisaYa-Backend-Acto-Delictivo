@@ -11,6 +11,7 @@ const userSchema = new Schema(User, {
   correo: { type: 'string' },
   contrasenia: { type: 'string' },
   fechaCreacion: { type: 'string' },
+  role: { type: 'string'}
 })
 
 /* usar el cliente para crear un Repositorio solo para usuarios */

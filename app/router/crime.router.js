@@ -1,9 +1,10 @@
 import crime from '../controllers/crime.js'
 import { Router } from 'express'
+import { validateToken } from '../middleware/token.middleware.js'
 
 const router = Router()
 
-router.get('/buscar/:id', crime.buscarCrime)
+router.get('/buscar/:id', crime.buscarCrime, validateToken)
 
 router.get('/todos', crime.todosCrime)
 

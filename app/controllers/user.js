@@ -20,6 +20,7 @@ const registroUser = async (req, res) => {
   user_new.correo = user.correo
   user_new.contrasenia = passwordHash
   user_new.fechaCreacion = user.fechaCreacion
+  user_new.role = 'user'
   
   const registro = await userRepository.createAndSave(user_new)
   res.send(registro)
@@ -69,7 +70,10 @@ const authUser = async (req, res) => {
   }
   
   //username como password
-  const user_token = {username: user_data[0].usuario }
+  const user_token = {
+    username: user_data[0].usuario,
+    user_id: user_data[0].entityId,
+    role: user_data[0].role}
   const accessToken = generateAccessToken(user_token)
   /*Revisar */
   res.header('authorization',accessToken).json({
@@ -81,18 +85,6 @@ const authUser = async (req, res) => {
   
 function generateAccessToken(user){
   return jwt.sign(user, process.env.SECRET_TOKEN, {expiresIn: '10min'})
-}
-
-function validateToken(req, res, next){
-  const accessToken = req.headers['authorization'] || req.query.accessToken
-  if(!accessToken) res.send('Access denied')
-  jwt.verify(accessToken, process.env.SECRET_TOKEN, (err) =>{
-    if(err){
-      res.send('Access denied, token expired or incorrect')
-    }else{
-      next()
-    }
-  })
 }
 
 export default {

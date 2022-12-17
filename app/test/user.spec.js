@@ -15,10 +15,9 @@ describe('Testing user enpoint: ', function() {
       chai.request(url)
         .post('/registro')
         .send({ 
-          usuario: 'user prueba v2',
-          edad: '24',
-          correo: 'user_prueba_v2',
-          contrasenia: 'user_prueba_v2',
+          usuario: 'marcos',
+          correo: 'marcos@marcos',
+          contrasenia: '123',
           fechaCreacion: 'user_prueba_v2'
         })
         .end( (err,res) =>{
@@ -28,7 +27,7 @@ describe('Testing user enpoint: ', function() {
         })
     })
 
-    it('Se deberia buscar un usuario: ', (done) => {
+    /* it('Se deberia buscar un usuario: ', (done) => {
       chai.request(url)
         .get('/buscar/'+idUser)
         .end( (err,res) =>{
@@ -61,6 +60,6 @@ describe('Testing user enpoint: ', function() {
           expect(res).to.have.status(200)
           done()
         })
-    })
+    }) */
   })
 })
