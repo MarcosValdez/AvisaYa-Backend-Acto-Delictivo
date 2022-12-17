@@ -7,7 +7,6 @@ class User extends Entity {}
 /* creacion de un esquema para usuarios */
 const userSchema = new Schema(User, {
   usuario: { type: 'string' },
-  edad: { type: 'string' },
   correo: { type: 'string' },
   contrasenia: { type: 'string' },
   fechaCreacion: { type: 'string' },
