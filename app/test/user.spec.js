@@ -19,7 +19,6 @@ describe('Testing user enpoint: ', function() {
           usuario: 'marcos',
           correo: 'marcos@marcos',
           contrasenia: '123',
-          fechaCreacion: 'user_prueba_v2'
         })
         .end( (err,res) =>{
           idUser =res.body.entityId
@@ -61,7 +60,6 @@ describe('Testing user enpoint: ', function() {
           usuario: 'user_prueba_v3',
           correo: 'user_prueba_v3',
           contrasenia: 'user_prueba_v3',
-          fechaCreacion: 'user_prueba_v3'
         })
         .set('authorization', token)
         .end( (err,res) =>{

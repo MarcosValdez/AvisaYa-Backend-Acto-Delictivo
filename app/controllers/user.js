@@ -2,13 +2,13 @@
 import { userRepository } from '../schemas/user.schemas.js' 
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import { fechaActual } from '../helpers/date.js'
 
 const registroUser = async (req, res) => {
   const user = []
   user.usuario = req.body.usuario ?? null
   user.correo = req.body.correo ?? null
   user.contrasenia = req.body.contrasenia ?? null
-  user.fechaCreacion = req.body.fechaCreacion ?? null
   
   //Encriptar contraseña
   const saltRounds = 10
@@ -17,7 +17,7 @@ const registroUser = async (req, res) => {
   user_new.usuario = user.usuario
   user_new.correo = user.correo
   user_new.contrasenia = passwordHash
-  user_new.fechaCreacion = user.fechaCreacion
+  user_new.fechaCreacion = fechaActual
   user_new.role = 'user'
   
   const registro = await userRepository.createAndSave(user_new)
@@ -35,7 +35,6 @@ const actualizarUser = async (req, res) => {
   user.usuario = req.body.usuario ?? null
   user.correo = req.body.correo ?? null
   user.contrasenia = req.body.contrasenia ?? null
-  user.fechaCreacion = req.body.fechaCreacion ?? null
     
   await userRepository.save(user)
     
