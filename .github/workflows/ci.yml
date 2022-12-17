@@ -24,6 +24,7 @@ jobs:
         run: npm test
         env:
           REDIS_URL: ${{secrets.REDIS_URL}}
+          SECRET_TOKEN: ${{secrets.SECRET_TOKEN}}
 
       - name: Run eslint
         run: npm run lint -- --fix
