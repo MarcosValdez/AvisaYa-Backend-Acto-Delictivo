@@ -8,6 +8,7 @@ const expect = chai.expect
 const url = 'http://localhost:8080/api/user'
 
 let idUser = ''
+let token = ''
 
 describe('Testing user enpoint: ', function() {
   describe('Verificaion de metodos CRUD', function(){
@@ -15,9 +16,9 @@ describe('Testing user enpoint: ', function() {
       chai.request(url)
         .post('/registro')
         .send({ 
-          usuario: 'user prueba v2',
-          correo: 'user_prueba_v2',
-          contrasenia: 'user_prueba_v2',
+          usuario: 'marcos',
+          correo: 'marcos@marcos',
+          contrasenia: '123',
           fechaCreacion: 'user_prueba_v2'
         })
         .end( (err,res) =>{
@@ -27,9 +28,25 @@ describe('Testing user enpoint: ', function() {
         })
     })
 
-    /* it('Se deberia buscar un usuario: ', (done) => {
+    it('Se deberia iniciar sesion: ', (done) => {
+      chai.request(url)
+        .post('/auth')
+        .send({
+          correo: 'marcos@marcos',
+          contrasenia: '123'
+        })
+        .end((err, res) => {
+          expect(res.body).to.have.property('token')
+          expect(res).to.have.status(200)
+          token = res.body.token
+          done()
+        })
+    })
+
+    it('Se deberia buscar un usuario: ', (done) => {
       chai.request(url)
         .get('/buscar/'+idUser)
+        .set('authorization', token)
         .end( (err,res) =>{
           expect(res.body).to.have.property('entityId').to.be.equal(idUser)
           expect(res).to.have.status(200)
@@ -46,6 +63,7 @@ describe('Testing user enpoint: ', function() {
           contrasenia: 'user_prueba_v3',
           fechaCreacion: 'user_prueba_v3'
         })
+        .set('authorization', token)
         .end( (err,res) =>{
           expect(res.body).to.have.property('usuario').to.be.equal('user_prueba_v3')
           expect(res).to.have.status(200)
@@ -56,10 +74,11 @@ describe('Testing user enpoint: ', function() {
     it('Se deberia eliminar un usuario: ', (done) => {
       chai.request(url)
         .del('/eliminar/'+idUser)
+        .set('authorization', token)
         .end( (err,res) =>{
           expect(res).to.have.status(200)
           done()
         })
-    }) */
+    })
   })
 })

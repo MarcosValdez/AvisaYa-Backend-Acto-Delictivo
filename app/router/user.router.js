@@ -2,6 +2,7 @@ import user from '../controllers/user.js'
 import { Router } from 'express'
 import express from 'express'
 import 'dotenv/config'
+import { validateToken } from '../middleware/token.middleware.js'
 
 const router = Router()
 
@@ -13,10 +14,10 @@ router.post('/registro', user.registroUser)
 
 router.post('/auth', user.authUser)
 
-router.get('/buscar/:id', user.buscarUser)
+router.get('/buscar/:id', validateToken, user.buscarUser)
 
-router.put('/actualizar/:id', user.actualizarUser)
+router.put('/actualizar/:id', validateToken, user.actualizarUser)
 
-router.delete('/eliminar/:id', user.eliminarUser)
+router.delete('/eliminar/:id', validateToken, user.eliminarUser)
 
 export default router
