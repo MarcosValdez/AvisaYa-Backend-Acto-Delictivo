@@ -23,7 +23,7 @@ Puede elegir entre clonar por HTTPS o SSH.
 -- sin mayusculas ni caracateres especiales ni espacios.
 
 ## **Desplegar proyecto vercel CLI**
-##### En la terminal ingresar los siguientes comandos:
+##### En la terminal, donde esta ubicado el proyecto, ingresar los siguientes comandos:
 
 - npm i -g vercel
 
