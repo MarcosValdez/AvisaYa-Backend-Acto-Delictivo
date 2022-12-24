@@ -10,9 +10,9 @@ export const restResponseTimeHistogram = new client.Histogram({
   labelNames: ['method', 'route', 'status_code'],
 })
 
-export const counter = new client.Counter({
-  name: 'node_request_operations_total',
-  help: 'The total number of processed requests'
+export const counterActoDelicito = new client.Counter({
+  name: 'node_request_registro_total_acto_delictivo',
+  help: 'The total number of processed requests',
 })
   
 export function startMetricsServer() {
