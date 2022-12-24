@@ -3,6 +3,8 @@ import { userRepository } from '../schemas/user.schemas.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { fechaActual } from '../helpers/date.js'
+import { counter } from '../helpers/metrics.js'
+
 
 const registroUser = async (req, res) => {
   const user = []
@@ -22,11 +24,13 @@ const registroUser = async (req, res) => {
   
   const registro = await userRepository.createAndSave(user_new)
   res.send(registro)
+  counter.inc()
 }
 
 const buscarUser = async (req, res) => {
   const user = await userRepository.fetch(req.params.id)
   res.send(user)
+  counter.inc()
 }
     
 const actualizarUser = async (req, res) => {
@@ -39,11 +43,13 @@ const actualizarUser = async (req, res) => {
   await userRepository.save(user)
     
   res.send(user)
+  counter.inc()
 }
     
 const eliminarUser = async (req, res) => {
   await userRepository.remove(req.params.id)
   res.send({ entityId: req.params.id })
+  counter.inc()
 }
 
 const authUser = async (req, res) => {  
@@ -64,7 +70,6 @@ const authUser = async (req, res) => {
       error: 'invalid user or password'
     })
   }
-  
   //username como password
   const user_token = {
     username: user_data[0].usuario,
@@ -77,6 +82,7 @@ const authUser = async (req, res) => {
     user: user_data[0],
     token: accessToken
   })
+  counter.inc()
 }
   
 function generateAccessToken(user){
