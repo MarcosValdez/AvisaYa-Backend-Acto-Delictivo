@@ -28,7 +28,6 @@ const registroCrime = async (req, res) => {
   crime.id_usuario = req.body.id_usuario ?? null
   const registro = await crimeRepository.createAndSave(crime)
   res.send(registro)
-  counter.inc()
 }
 
 const actualizarCrime = async (req, res) => {
