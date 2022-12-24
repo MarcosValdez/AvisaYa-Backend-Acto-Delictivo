@@ -10,7 +10,7 @@ Puede elegir entre clonar por HTTPS o SSH.
 - [SSH] git clone git@github.com:MarcosValdez/avisaya-backend-acto-delictivo.git
 
 ## **Variables de entorno**
-- REDIS_URL = redis://default:<password>@<public endpoint>
+- REDIS_URL = redis://default:<password>@<public_endpoint>
  Ingresar a su [base de datos](https://app.redislabs.com/#/login)
 -- [password](https://docs.redis.com/latest/images/rc/database-fixed-configuration-security.png)
 -- [public endpoint](https://docs.redis.com/latest/images/rc/quickstart-database-overview.png)
