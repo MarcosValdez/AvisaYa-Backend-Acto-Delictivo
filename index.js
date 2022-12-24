@@ -31,7 +31,7 @@ app.use(morgan(formatMorgan.morganJSONFormat(), {
 
 app.use('/api', router)
 app.get('/', (req, res) => {
-  res.status(200).json({prueba: 'Bienvenido'})
+  res.status(200).json({prueba: 'Bienvenido prueba V1'})
 })
 
 const puerto = 8080
