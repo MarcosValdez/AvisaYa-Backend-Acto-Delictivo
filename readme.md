@@ -10,16 +10,21 @@ Puede elegir entre clonar por HTTPS o SSH.
 - [SSH] git clone git@github.com:MarcosValdez/avisaya-backend-acto-delictivo.git
 
 ## **Variables de entorno**
-- REDIS_URL = redis://default:<password>@<public_endpoint>
+- REDIS_URL = ```redis://default:<password>@<public_endpoint>```
+
  Ingresar a su [base de datos](https://app.redislabs.com/#/login)
+
 -- [password](https://docs.redis.com/latest/images/rc/database-fixed-configuration-security.png)
+
 -- [public endpoint](https://docs.redis.com/latest/images/rc/quickstart-database-overview.png)
-- SECRET_TOKEN = cualquierpalabra
+
+- SECRET_TOKEN = ```cualquierpalabra```
+
 -- sin mayusculas ni caracateres especiales ni espacios.
 
 ## **Desplegar proyecto vercel CLI**
 ##### En la terminal ingresar el siguiente comando
-**Solo se permiten caracteres alfanuméricos en minúsculas y guiones.
+
 - vercel --yes --env REDIS_URL=<<valor del paso previo>> --env SECRET_TOKEN=<<valor del paso previo>>
 
 ## Ejecutar el proyecto
