@@ -14,7 +14,7 @@
   },
   "servers": [
     {
-      "url": "https://actoDelictivo3.swagger.io/api/v3"
+      "url": "https://avisa-ya-backend-acto-delictivo-2.vercel.app/api/"
     }
   ],
   "tags": [
@@ -36,266 +36,17 @@
     }
   ],
   "paths": {
-    "/actoDelictivo": {
-      "put": {
-        "tags": [
-          "actoDelictivo"
-        ],
-        "summary": "Actualiza datos de un registro de delito existente",
-        "description": "Actualizar un acto delictivo existente por Id.",
-        "operationId": "updateActoDelictivo",
-        "requestBody": {
-          "description": "Actualizar un acto delictivo existente",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ActoDelictivo"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/ActoDelictivo"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/ActoDelictivo"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Operación exitosa",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActoDelictivo"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActoDelictivo"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "ID Invalida"
-          },
-          "403": {
-            "description": "Acceso prohibido"
-          },
-          "404": {
-            "description": "Acto delictivo noencontrado"
-          },
-          "405": {
-            "description": "Excepción de validación"
-          }
-        },
-        "security": [
-          {
-            "actoDelictivo_auth": [
-              "write:actosDelictivos",
-              "read:actosDelictivos"
-            ]
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "actoDelictivo"
-        ],
-        "summary": "Agrega un nuevo registros de acto delictivo",
-        "description": "Agrega un nuevo registros de acto delictivo",
-        "operationId": "addActoDelictivo",
-        "requestBody": {
-          "description": "Crea un nuevo registros de acto delictivo",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ActoDelictivo"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/ActoDelictivo"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/ActoDelictivo"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Operación exitosa",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActoDelictivo"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActoDelictivo"
-                }
-              }
-            }
-          },
-          "405": {
-            "description": "Entrada Invalida"
-          }
-        },
-        "security": [
-          {
-            "actoDelictivo_auth": [
-              "write:actosDelictivos",
-              "read:actosDelictivos"
-            ]
-          }
-        ]
-      }
-    },
-    "/actoDelictivo/findByCategory": {
-      "get": {
-        "tags": [
-          "actoDelictivo"
-        ],
-        "summary": "Encuentra acto delictivo por categoria",
-        "description": "Encuentra acto delictivo por categoria",
-        "operationId": "findActoDelictivoByCategory",
-        "parameters": [
-          {
-            "name": "categoria",
-            "in": "query",
-            "description": "Categoria que debe tenerse en cuenta para el filtro",
-            "required": false,
-            "explode": true,
-            "schema": {
-              "type": "string",
-              "default": "Robo Armado",
-              "enum": [
-                "Robo Armado",
-                "Robo",
-                "Venta de Drogas"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Operación exitosa",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ActoDelictivo"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ActoDelictivo"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Valor de categoria invalido"
-          }
-        },
-        "security": [
-          {
-            "actoDelictivo_auth": [
-              "write:actosDelictivos",
-              "read:actosDelictivos"
-            ]
-          }
-        ]
-      }
-    },
-    "/actoDelictivo/findByDistrict": {
-      "get": {
-        "tags": [
-          "actoDelictivo"
-        ],
-        "summary": "Encuentra actos delictivo por distrito",
-        "description": "Encuentra actos delictivo por distrito",
-        "operationId": "findActoDelictivoByDistrict",
-        "parameters": [
-          {
-            "name": "district",
-            "in": "query",
-            "description": "Distrito para filtrar",
-            "required": false,
-            "explode": true,
-            "schema": {
-              "type": "string",
-              "default": "Lima",
-              "enum": [
-                "Lima",
-                "Ate",
-                "Los Olivos"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Operación exitosa",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ActoDelictivo"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ActoDelictivo"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Valor de distrito invalido"
-          }
-        },
-        "security": [
-          {
-            "actoDelictivo_auth": [
-              "write:actosDelictivos",
-              "read:actosDelictivos"
-            ]
-          }
-        ]
-      }
-    },
-    "/actoDelictivo/{actoDelictivoId}": {
+    "/crime/buscar/{id}": {
       "get": {
         "tags": [
           "actoDelictivo"
         ],
         "summary": "Encuentra un acto delictivo por ID",
         "description": "Retorna el registro de un acto delictivo",
-        "operationId": "getActoDelictivoById",
+        "operationId": "buscarCrime",
         "parameters": [
           {
-            "name": "actoDelictivoId",
+            "name": "id",
             "in": "path",
             "description": "ID del acto delictivo a retornar",
             "required": true,
@@ -311,12 +62,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ActoDelictivo"
+                  "$ref": "#/components/schemas/Crime"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/ActoDelictivo"
+                  "$ref": "#/components/schemas/Crime"
                 }
               }
             }
@@ -339,8 +90,113 @@
             ]
           }
         ]
-      },
+      }
+    },
+    "/crime/todos": {
+      "get": {
+        "tags": [
+          "actoDelictivo"
+        ],
+        "summary": "Lista todos los actos delictivos",
+        "description": "Retorna un listado de actos delictivos",
+        "operationId": "todosCrime",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Crime"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Crime"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID Invalido"
+          },
+          "404": {
+            "description": "Acto Delictivo No Encontrado"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "actoDelictivo_auth": [
+              "write:actosDelictivos",
+              "read:actosDelictivos"
+            ]
+          }
+        ]
+      }
+    },
+    "/crime/registro": {
       "post": {
+        "tags": [
+          "actoDelictivo"
+        ],
+        "summary": "Agrega un nuevo registros de acto delictivo",
+        "description": "Agrega un nuevo registros de acto delictivo",
+        "operationId": "registroCrime",
+        "requestBody": {
+          "description": "Crea un nuevo registros de acto delictivo",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Crime"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Crime"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Crime"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Operación exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Crime"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Crime"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Entrada Invalida"
+          }
+        },
+        "security": [
+          {
+            "actoDelictivo_auth": [
+              "write:actosDelictivos",
+              "read:actosDelictivos"
+            ]
+          }
+        ]
+      }
+    },
+    "/crime/actualizar/{id}": {
+      "put": {
         "tags": [
           "actoDelictivo"
         ],
@@ -349,29 +205,13 @@
         "operationId": "updateActoDelictivoWithForm",
         "parameters": [
           {
-            "name": "actoDelictivoId",
+            "name": "id",
             "in": "path",
             "description": "ID del acto delictivo que necesita actualizarse",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int64"
-            }
-          },
-          {
-            "name": "detalle",
-            "in": "query",
-            "description": "Detalle del delito que necesita ser actualizado",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "distrito",
-            "in": "query",
-            "description": "Distrito del delito que necesita ser actualizado",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -388,26 +228,19 @@
             ]
           }
         ]
-      },
+      }
+    },
+    "/crime/eliminar/{id}": {
       "delete": {
         "tags": [
           "actoDelictivo"
         ],
         "summary": "Elimina un acto delictivo",
         "description": "Elimina un acto delictivo",
-        "operationId": "deleteActoDelictivo",
+        "operationId": "eliminarCrime",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "actoDelictivoId",
+            "name": "id",
             "in": "path",
             "description": "Id del acto delictivo a eliminar",
             "required": true,
@@ -432,91 +265,30 @@
         ]
       }
     },
-    "/actoDelictivo/{actoDelictivoId}/uploadMedia": {
-      "post": {
-        "tags": [
-          "actoDelictivo"
-        ],
-        "summary": "Carga de archivo multimedia",
-        "description": "",
-        "operationId": "uploadMedia",
-        "parameters": [
-          {
-            "name": "actoDelictivoId",
-            "in": "path",
-            "description": "ID del acto delictivo relacionado con el archivo multimedia",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "additionalMetadata",
-            "in": "query",
-            "description": "Additional Metadata",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/octet-stream": {
-              "schema": {
-                "type": "string",
-                "format": "binary"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Operación exitosa",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "actoDelictivo_auth": [
-              "write:actosDelictivos",
-              "read:actosDelictivos"
-            ]
-          }
-        ]
-      }
-    },
-    "/usuario": {
+    "/user/registro": {
       "post": {
         "tags": [
           "usuario"
         ],
         "summary": "Crear usuario",
-        "description": "Esto solo lo puede hacer el usuario registrado.",
-        "operationId": "createusuario",
+        "description": "Creacion de un nuevo usuario",
+        "operationId": "registroUser",
         "requestBody": {
           "description": "Crear objeto usuario",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Usuario"
+                "$ref": "#/components/schemas/User"
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/Usuario"
+                "$ref": "#/components/schemas/User"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Usuario"
+                "$ref": "#/components/schemas/User"
               }
             }
           }
@@ -527,12 +299,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/User"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
@@ -540,99 +312,64 @@
         }
       }
     },
-    "/usuario/login": {
-      "get": {
+    "/user/auth": {
+      "post": {
         "tags": [
           "usuario"
         ],
-        "summary": "Inicio de sesion en el sistema",
-        "description": "",
-        "operationId": "loginUsuario",
-        "parameters": [
-          {
-            "name": "username",
-            "in": "query",
-            "description": "El nombre de usuario para iniciar sesión",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "description": "La contraseña para iniciar sesión",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Operación exitosa",
-            "headers": {
-              "X-Rate-Limit": {
-                "description": "Llamadas por hora permitidas por el usuario",
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              },
-              "X-Expires-After": {
-                "description": "Fecha en UTC cuando caduca el token",
-                "schema": {
-                  "type": "string",
-                  "format": "date-time"
-                }
+        "summary": "Autenticar usuario",
+        "description": "Autenticacion de usuario usuario",
+        "operationId": "authUser",
+        "requestBody": {
+          "description": "Autenticar usuario",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
               }
             },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "Operación exitosa",
             "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
-          },
-          "400": {
-            "description": "usuarioname/password Invalido"
           }
         }
       }
     },
-    "/usuario/logout": {
-      "get": {
-        "tags": [
-          "usuario"
-        ],
-        "summary": "Cierra la sesión actual del usuario conectado",
-        "description": "",
-        "operationId": "logOutUsuario",
-        "parameters": [],
-        "responses": {
-          "default": {
-            "description": "Operación exitosa"
-          }
-        }
-      }
-    },
-    "/usuario/{usuarioId}": {
+    "/user/buscar/{id}": {
       "get": {
         "tags": [
           "usuario"
         ],
         "summary": "Obtener usuario por ID de usuario",
         "description": "",
-        "operationId": "getUsuarioByID",
+        "operationId": "id",
         "parameters": [
           {
-            "name": "usuarioId",
+            "name": "id",
             "in": "path",
             "description": "El ID que debe obtenerse. Utilice 1 para la prueba. ",
             "required": true,
@@ -647,12 +384,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/User"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
@@ -664,17 +401,19 @@
             "description": "Usuario No Encontrado"
           }
         }
-      },
+      }
+    },
+    "/user/actualizar/{id}": {
       "put": {
         "tags": [
           "usuario"
         ],
         "summary": "Actualizar usuario",
         "description": "Esto solo lo puede hacer el usuario registrado.",
-        "operationId": "updateUsuario",
+        "operationId": "actualizarUser",
         "parameters": [
           {
-            "name": "usuarioId",
+            "name": "id",
             "in": "path",
             "description": "ID del usuario que necesita ser actualizado",
             "required": true,
@@ -688,17 +427,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Usuario"
+                "$ref": "#/components/schemas/User"
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/Usuario"
+                "$ref": "#/components/schemas/User"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Usuario"
+                "$ref": "#/components/schemas/User"
               }
             }
           }
@@ -708,17 +447,19 @@
             "description": "Operación exitosa"
           }
         }
-      },
+      }
+    },
+    "/user/eliminar/{id}": {
       "delete": {
         "tags": [
           "usuario"
         ],
         "summary": "Delete usuario",
         "description": "Esto solo lo puede hacer el usuario registrado.",
-        "operationId": "deleteUsuario",
+        "operationId": "eliminarUser",
         "parameters": [
           {
-            "name": "usuarioId",
+            "name": "id",
             "in": "path",
             "description": "El ID del usuario que necesita ser eliminado",
             "required": true,
@@ -736,393 +477,61 @@
           }
         }
       }
-    },
-    "/mensaje/{usuarioId}": {
-      "get": {
-        "tags": [
-          "mensaje"
-        ],
-        "summary": "Encuentra un mensaje por ID del usuario",
-        "description": "Retorna el mensaje de un usuario",
-        "operationId": "getMensajeByusuarioId",
-        "parameters": [
-          {
-            "name": "usuarioId",
-            "in": "path",
-            "description": "ID del usuario",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Operación exitosa",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Mensaje"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Mensaje"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "ID Invalido"
-          },
-          "404": {
-            "description": "Mensaje No Encontrado"
-          }
-        },
-        "security": [
-          {
-            "api_key": []
-          },
-          {
-            "actoDelictivo_auth": [
-              "write:mensajes",
-              "read:mensajes"
-            ]
-          }
-        ]
-      }
-    },
-    "/comentario/{usuarioId}": {
-      "get": {
-        "tags": [
-          "comentario"
-        ],
-        "summary": "Encuentra comentarios por ID del usuario",
-        "description": "Retorna comentarios de un usuario",
-        "operationId": "getComentarioByusuarioId",
-        "parameters": [
-          {
-            "name": "usuarioId",
-            "in": "path",
-            "description": "ID del usuario",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Operación exitosa",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Comentario"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Comentario"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "ID Invalido"
-          },
-          "404": {
-            "description": "Mensaje No Encontrado"
-          }
-        },
-        "security": [
-          {
-            "api_key": []
-          },
-          {
-            "actoDelictivo_auth": [
-              "write:comentarios",
-              "read:comentarios"
-            ]
-          }
-        ]
-      }
-    },
-    "/comentario/{comentarioId}": {
-      "get": {
-        "tags": [
-          "comentario"
-        ],
-        "summary": "Obtener usuario por ID de usuario",
-        "description": "",
-        "operationId": "getComentarioByID",
-        "parameters": [
-          {
-            "name": "comentarioId",
-            "in": "path",
-            "description": "El ID que debe obtenerse. Utilice 1 para la prueba. ",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Operación exitosa",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Comentario"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Comentario"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "ID de Comentario invalido"
-          },
-          "404": {
-            "description": "Comentario No Encontrado"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "comentario"
-        ],
-        "summary": "Actualizar comentario",
-        "description": "Esto solo lo puede hacer el usuario registrado.",
-        "operationId": "updateComentario",
-        "parameters": [
-          {
-            "name": "comentarioId",
-            "in": "path",
-            "description": "ID del comentario que necesita ser actualizado",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Actualizar un comentario existente",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Comentario"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/Comentario"
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Comentario"
-              }
-            }
-          }
-        },
-        "responses": {
-          "default": {
-            "description": "Operación exitosa"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "comentario"
-        ],
-        "summary": "Delete comentario",
-        "description": "Esto solo lo puede hacer el usuario registrado.",
-        "operationId": "deleteComentario",
-        "parameters": [
-          {
-            "name": "comentarioId",
-            "in": "path",
-            "description": "El ID del comentario que necesita ser eliminado",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "ID de Comentario Invalido"
-          },
-          "404": {
-            "description": "Comentario No Encontrado"
-          }
-        }
-      }
     }
   },
   "components": {
     "schemas": {
-      "Mensaje": {
+      "User": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64",
-            "example": 10
-          },
-          "usuarioId": {
-            "type": "integer",
-            "format": "int64",
-            "example": 198772
-          },
-          "usuarioDestinoId": {
-            "format": "int64",
-            "example": 7
-          },
-          "fecha": {
+          "entityId": {
             "type": "string",
-            "format": "date-time"
+            "example": "01GMFB9TM2VHV9W4N3R2VSWYMX"
           },
-          "status": {
+          "usuario": {
             "type": "string",
-            "description": "Estado del mensaje",
-            "example": "Leido",
-            "enum": [
-              "Entregado",
-              "Leido"
-            ]
-          },
-          "contenido": {
-            "type": "string"
-          }
-        },
-        "xml": {
-          "name": "mensaje"
-        }
-      },
-      "Comentario": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64",
-            "example": 10
-          },
-          "actoDelictivoId": {
-            "type": "integer",
-            "format": "int64",
-            "example": 198772
-          },
-          "mensajeId": {
-            "type": "integer",
-            "format": "int64",
-            "example": 198772
-          }
-        },
-        "xml": {
-          "name": "comentario"
-        }
-      },
-      "Categoria": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64",
-            "example": 1
-          },
-          "nombre": {
-            "type": "string",
-            "example": "Robo"
-          },
-          "estado": {
-            "format": "int64",
-            "example": 1
-          }
-        },
-        "xml": {
-          "name": "categoria"
-        }
-      },
-      "Distrito": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64",
-            "example": 1
-          },
-          "nombre": {
-            "type": "string",
-            "example": "Lince"
-          }
-        },
-        "xml": {
-          "name": "distrito"
-        }
-      },
-      "Usuario": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64",
-            "example": 10
-          },
-          "username": {
-            "type": "string",
-            "example": "JhonDoe11"
-          },
-          "nombre": {
-            "type": "string",
-            "example": "Jhon"
-          },
-          "apellidoPaterno": {
-            "type": "string",
-            "example": "Doe"
-          },
-          "apellidoMaterno": {
-            "type": "string",
-            "example": "James"
+            "example": "GonFreecs11"
           },
           "correo": {
             "type": "string",
-            "example": "john@email.com"
+            "example": "gonfreecs11@email.com"
           },
-          "password": {
+          "contrasenia": {
             "type": "string",
-            "example": "12345"
+            "example": "gr33dI$l@nd"
           },
           "fechaCreacion": {
-            "type": "integer",
+            "type": "string",
             "description": "Fecha de creacion de usuarios",
-            "format": "int32",
-            "example": 1
+            "example": "10-12-2022"
+          },
+          "read": {
+            "type": "string",
+            "example": "user"
           }
         },
         "xml": {
-          "name": "usuario"
+          "name": "user"
         }
       },
-      "ActoDelictivo": {
+      "Crime": {
         "required": [
+          "entityId",
           "titulo",
           "descripcion",
-          "fecha",
+          "hora",
           "lugar",
-          "evidenciaUrls"
+          "evidencia",
+          "fecha",
+          "categoria",
+          "fechaCreacion",
+          "id_usuario"
         ],
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64",
-            "example": 10
+          "entityId": {
+            "type": "string",
+            "example": "01GMG4MKJ55NKHEMKMV9C5MW9C"
           },
           "titulo": {
             "type": "string",
@@ -1132,49 +541,42 @@
             "type": "string",
             "example": "Robo celular en combi"
           },
-          "fecha": {
+          "hora": {
             "type": "string",
-            "format": "date-time"
+            "format": "time"
           },
           "lugar": {
             "type": "string",
             "example": "Av. Venezuela"
           },
-          "distrito": {
-            "$ref": "#/components/schemas/Distrito"
+          "evidencia": {
+            "type": "string",
+            "example": "https://cdn.www.gob.pe/uploads/document/file/3360.jpg"
           },
-          "evidenciaUrls": {
-            "type": "array",
-            "xml": {
-              "wrapped": true
-            },
-            "items": {
-              "type": "string",
-              "xml": {
-                "name": "evidenciaUrl"
-              }
-            }
-          },
-          "categoria": {
-            "$ref": "#/components/schemas/Categoria"
+          "fecha": {
+            "type": "string",
+            "format": "date"
           },
           "estado": {
             "type": "string",
             "description": "Estado del Acto Delictivo",
             "enum": [
-              "Visible",
-              "Oculto",
-              "Eliminado"
+              "Robo",
+              "Corrupcion",
+              "Asesinato"
             ]
           },
-          "usuarioId": {
-            "type": "integer",
-            "format": "int64",
-            "example": 198772
+          "fechaCreacion": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "id_usuario": {
+            "type": "string",
+            "example": "01GMFB9TM2VHV9W4N3R2VSWYMX"
           }
         },
         "xml": {
-          "name": "ActoDelictivo"
+          "name": "Crime"
         }
       },
       "ApiResponse": {
@@ -1197,29 +599,29 @@
       }
     },
     "requestBodies": {
-      "ActoDelictivo": {
+      "Crime": {
         "description": "Objeto de acto delictivo que debe agregarse",
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/ActoDelictivo"
+              "$ref": "#/components/schemas/Crime"
             }
           },
           "application/xml": {
             "schema": {
-              "$ref": "#/components/schemas/ActoDelictivo"
+              "$ref": "#/components/schemas/Crime"
             }
           }
         }
       },
-      "UsuarioArray": {
+      "UserArray": {
         "description": "Lista de objetos usuario",
         "content": {
           "application/json": {
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/Usuario"
+                "$ref": "#/components/schemas/User"
               }
             }
           }
