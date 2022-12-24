@@ -10,33 +10,50 @@ Puede elegir entre clonar por HTTPS o SSH.
 - [SSH] git clone git@github.com:MarcosValdez/avisaya-backend-acto-delictivo.git
 
 ## **Variables de entorno**
-- REDIS_URL = redis://default:<password>@<public_endpoint>
+- REDIS_URL = ```redis://default:<password>@<public_endpoint>```
+
  Ingresar a su [base de datos](https://app.redislabs.com/#/login)
+
 -- [password](https://docs.redis.com/latest/images/rc/database-fixed-configuration-security.png)
+
 -- [public endpoint](https://docs.redis.com/latest/images/rc/quickstart-database-overview.png)
-- SECRET_TOKEN = cualquierpalabra
+
+- SECRET_TOKEN = ```cualquierpalabra```
+
 -- sin mayusculas ni caracateres especiales ni espacios.
 
+Ejemplo del resultado:
+- ```REDIS_URL = redis://default:dPjPxAM3OwRqODvHFhl@redis-16024.c289.asia-northeast2-2.gce.cloud.redislabs.com:16024```
+- ```SECRET_TOKEN = tokensecreto```
+
 ## **Desplegar proyecto vercel CLI**
-##### En la terminal ingresar el siguiente comando
-**Solo se permiten caracteres alfanuméricos en minúsculas y guiones.
+##### En la terminal, donde esta ubicado el proyecto, ingresar los siguientes comandos:
+
+- npm i -g vercel
+
 - vercel --yes --env REDIS_URL=<<valor del paso previo>> --env SECRET_TOKEN=<<valor del paso previo>>
 
-## Ejecutar el proyecto
-Para poder instalar los paquetes
+Retornara el link de despligue similar a: 
+- ```Production: https://avisaya-backend-acto-delictivo.vercel.app```
+ 
+## Correr proyecto en local 
+
+Crear un archivo .env y agregar las variables de entorno.
+ 
+Para poder instalar los paquetes.
 ```javascript
 npm install
 ```
-Para ejecutar el proyecto backend en modo desarrollo
+Para ejecutar el proyecto backend en modo desarrollo.
 ```javascript
 npm run dev
 ```
-Para ejecutar las pruebas unitarias 
+Para ejecutar las pruebas unitarias.
 ```javascript
 npm run test
 ```
 
-Para observar la cobertura 
+Para observar la cobertura.
 ```javascript
 npm run coverage
 ```
