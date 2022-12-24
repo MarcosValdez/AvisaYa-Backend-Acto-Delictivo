@@ -15,10 +15,6 @@ tags:
     description: Operaciones acerca del acto delictivo
   - name: usuario
     description: Operaciones acerca del usuario
-  - name: mensaje
-    description: Operaciones relativas al envio de mensajes
-  - name: comentario
-    description: Operaciones relativas a la publicacion de comentarios
 paths:
   /crime/buscar/{id}:
     get:
