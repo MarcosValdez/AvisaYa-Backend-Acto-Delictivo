@@ -20,6 +20,40 @@ tags:
   - name: comentario
     description: Operaciones relativas a la publicacion de comentarios
 paths:
+  /crime/buscar/{id}:
+    get:
+      tags:
+        - actoDelictivo
+      summary: Encuentra un acto delictivo por ID
+      description: Retorna el registro de un acto delictivo
+      operationId: buscarCrime
+      parameters:
+        - name: id
+          in: path
+          description: ID del acto delictivo a retornar
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Operación exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Crime'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Crime'
+        '400':
+          description: ID Invalido
+        '404':
+          description: Acto Delictivo No Encontrado
+      security:
+        - api_key: []
+        - actoDelictivo_auth:
+            - write:actosDelictivos
+            - read:actosDelictivos
   /crime/todos:
     get:
       tags:
@@ -72,86 +106,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ActoDelictivo'
+                $ref: '#/components/schemas/Crime'
             application/xml:
               schema:
-                $ref: '#/components/schemas/ActoDelictivo'
+                $ref: '#/components/schemas/Crime'
         '405':
           description: Entrada Invalida
       security:
-        - actoDelictivo_auth:
-            - write:actosDelictivos
-            - read:actosDelictivos
-
-      tags:
-        - actoDelictivo
-      summary: Encuentra actos delictivo por distrito
-      description: Encuentra actos delictivo por distrito
-      operationId: findActoDelictivoByDistrict
-      parameters:
-        - name: district
-          in: query
-          description: Distrito para filtrar
-          required: false
-          explode: true
-          schema:
-            type: string
-            default: Lima
-            enum:
-              - Lima
-              - Ate
-              - Los Olivos
-      responses:
-        '200':
-          description: Operación exitosa
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ActoDelictivo'
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ActoDelictivo'
-        '400':
-          description: Valor de distrito invalido
-      security:
-        - actoDelictivo_auth:
-            - write:actosDelictivos
-            - read:actosDelictivos
-  /crime/buscar/{id}:
-    get:
-      tags:
-        - actoDelictivo
-      summary: Encuentra un acto delictivo por ID
-      description: Retorna el registro de un acto delictivo
-      operationId: buscarCrime
-      parameters:
-        - name: id
-          in: path
-          description: ID del acto delictivo a retornar
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Operación exitosa
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Crime'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Crime'
-        '400':
-          description: ID Invalido
-        '404':
-          description: Acto Delictivo No Encontrado
-      security:
-        - api_key: []
         - actoDelictivo_auth:
             - write:actosDelictivos
             - read:actosDelictivos
@@ -199,44 +160,6 @@ paths:
         - actoDelictivo_auth:
             - write:actosDelictivos
             - read:actosDelictivos
-
-      tags:
-        - actoDelictivo
-      summary: Carga de archivo multimedia
-      description: ''
-      operationId: uploadMedia
-      parameters:
-        - name: actoDelictivoId
-          in: path
-          description: ID del acto delictivo relacionado con el archivo multimedia
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: additionalMetadata
-          in: query
-          description: Additional Metadata
-          required: false
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/octet-stream:
-            schema:
-              type: string
-              format: binary
-      responses:
-        '200':
-          description: Operación exitosa
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiResponse'
-      security:
-        - actoDelictivo_auth:
-            - write:actosDelictivos
-            - read:actosDelictivos
-
   /user/registro:
     post:
       tags:
@@ -301,9 +224,9 @@ paths:
         - usuario
       summary: Obtener usuario por ID de usuario
       description: ''
-      operationId: buscarUser
+      operationId: id
       parameters:
-        - name: usuarioId
+        - name: id
           in: path
           description: 'El ID que debe obtenerse. Utilice 1 para la prueba. '
           required: true
@@ -331,7 +254,7 @@ paths:
       description: Esto solo lo puede hacer el usuario registrado.
       operationId: actualizarUser
       parameters:
-        - name: usuarioId
+        - name: id
           in: path
           description: ID del usuario que necesita ser actualizado
           required: true
@@ -360,7 +283,7 @@ paths:
       description: Esto solo lo puede hacer el usuario registrado.
       operationId: eliminarUser
       parameters:
-        - name: usuarioId
+        - name: id
           in: path
           description: El ID del usuario que necesita ser eliminado
           required: true
@@ -371,24 +294,6 @@ paths:
           description: ID de Usuario Invalido
         '404':
           description: Usuario No Encontrado
-
-      tags:
-        - comentario
-      summary: Delete comentario
-      description: Esto solo lo puede hacer el usuario registrado.
-      operationId: deleteComentario
-      parameters:
-        - name: comentarioId
-          in: path
-          description: El ID del comentario que necesita ser eliminado
-          required: true
-          schema:
-            type: string
-      responses:
-        '400':
-          description: ID de Comentario Invalido
-        '404':
-          description: Comentario No Encontrado
 
 components:
   schemas:
