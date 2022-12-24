@@ -29,7 +29,7 @@ Puede elegir entre clonar por HTTPS o SSH.
 
 - vercel --yes --env REDIS_URL=<<valor del paso previo>> --env SECRET_TOKEN=<<valor del paso previo>>
 
-## Correr poryecto en local 
+## Correr proyecto en local 
 Para poder instalar los paquetes
 ```javascript
 npm install
