@@ -21,7 +21,7 @@ jobs:
         run: npm ci
 
       - name: Run all test
-        run: npm test
+        run: npm run coverage
         env:
           REDIS_URL: ${{secrets.REDIS_URL}}
           SECRET_TOKEN: ${{secrets.SECRET_TOKEN}}

@@ -1,18 +1,16 @@
 
 import { fechaActual } from '../helpers/date.js'
-import { counter } from '../helpers/metrics.js'
+import { counterActoDelicito } from '../helpers/metrics.js'
 import { crimeRepository } from '../schemas/crime.schemas.js' 
 
 const buscarCrime = async (req, res) => {
   const crime = await crimeRepository.fetch(req.params.id)
   res.send(crime)
-  counter.inc()
 }
 
 const todosCrime = async (req, res) => {
   const crime = await crimeRepository.search().return.all()
   res.send(crime)
-  counter.inc()
 }
 
 const registroCrime = async (req, res) => {
@@ -28,6 +26,7 @@ const registroCrime = async (req, res) => {
   crime.id_usuario = req.body.id_usuario ?? null
   const registro = await crimeRepository.createAndSave(crime)
   res.send(registro)
+  counterActoDelicito.inc()
 }
 
 const actualizarCrime = async (req, res) => {
@@ -44,13 +43,11 @@ const actualizarCrime = async (req, res) => {
   await crimeRepository.save(crime)
 
   res.send(crime)
-  counter.inc()
 }
 
 const eliminarCrime = async (req, res) => {
   await crimeRepository.remove(req.params.id)
   res.send({ entityId: req.params.id })
-  counter.inc()
 }
 
 export default {
