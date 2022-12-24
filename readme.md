@@ -22,6 +22,10 @@ Puede elegir entre clonar por HTTPS o SSH.
 
 -- sin mayusculas ni caracateres especiales ni espacios.
 
+Ejemplo del resultado:
+- ```REDIS_URL = redis://default:dPjPxAM3OwRqODvHFhl@redis-16024.c289.asia-northeast2-2.gce.cloud.redislabs.com:16024```
+- ```SECRET_TOKEN = tokensecreto```
+
 ## **Desplegar proyecto vercel CLI**
 ##### En la terminal, donde esta ubicado el proyecto, ingresar los siguientes comandos:
 
@@ -29,6 +33,9 @@ Puede elegir entre clonar por HTTPS o SSH.
 
 - vercel --yes --env REDIS_URL=<<valor del paso previo>> --env SECRET_TOKEN=<<valor del paso previo>>
 
+Retornara el link de despligue similar a: 
+- ```Production: https://avisaya-backend-acto-delictivo.vercel.app```
+ 
 ## Correr proyecto en local 
 Para poder instalar los paquetes
 ```javascript
