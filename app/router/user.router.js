@@ -14,7 +14,7 @@ router.post('/registro', user.registroUser)
 
 router.post('/auth', user.authUser)
 
-router.get('/buscar/:id', validateToken, user.buscarUser)
+router.get('/buscar/:id', user.buscarUser)
 
 router.put('/actualizar/:id', validateToken, user.actualizarUser)
 
