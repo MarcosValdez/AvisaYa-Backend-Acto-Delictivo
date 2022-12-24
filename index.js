@@ -35,10 +35,6 @@ app.use(morgan(formatMorgan.morganJSONFormat(), {
   }
 }))
 app.use('/api', router)
-app.get('/', (req, res) => {
-  logger.info('Hi there !')
-  res.status(200).json({prueb: 'dasdad'})
-})
 
 const puerto = 8080
 const ambiente =  process.env.NODE_ENV
