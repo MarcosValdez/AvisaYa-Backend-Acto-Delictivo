@@ -23,11 +23,13 @@ Puede elegir entre clonar por HTTPS o SSH.
 -- sin mayusculas ni caracateres especiales ni espacios.
 
 ## **Desplegar proyecto vercel CLI**
-##### En la terminal ingresar el siguiente comando
+##### En la terminal ingresar los siguientes comandos:
+
+- npm i -g vercel
 
 - vercel --yes --env REDIS_URL=<<valor del paso previo>> --env SECRET_TOKEN=<<valor del paso previo>>
 
-## Ejecutar el proyecto
+## Correr poryecto en local 
 Para poder instalar los paquetes
 ```javascript
 npm install
