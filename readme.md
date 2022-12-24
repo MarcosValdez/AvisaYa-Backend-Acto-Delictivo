@@ -37,20 +37,23 @@ Retornara el link de despligue similar a:
 - ```Production: https://avisaya-backend-acto-delictivo.vercel.app```
  
 ## Correr proyecto en local 
-Para poder instalar los paquetes
+
+Crear un archivo .env y agregar las variables de entorno.
+ 
+Para poder instalar los paquetes.
 ```javascript
 npm install
 ```
-Para ejecutar el proyecto backend en modo desarrollo
+Para ejecutar el proyecto backend en modo desarrollo.
 ```javascript
 npm run dev
 ```
-Para ejecutar las pruebas unitarias 
+Para ejecutar las pruebas unitarias.
 ```javascript
 npm run test
 ```
 
-Para observar la cobertura 
+Para observar la cobertura.
 ```javascript
 npm run coverage
 ```
