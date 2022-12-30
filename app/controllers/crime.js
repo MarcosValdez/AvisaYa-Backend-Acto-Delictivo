@@ -18,7 +18,7 @@ const registroCrime = async (req, res) => {
   crime.descripcion = req.body.descripcion ?? null
   crime.hora = req.body.hora ?? null
   crime.lugar = req.body.lugar ?? null
-  crime.evidencia = req.body.evidencia ?? null
+  crime.evidencia = 'req.body.evidencia' ?? null
   crime.fecha = req.body.fecha ?? null
   crime.categoria = req.body.categoria ?? null
   crime.fechaCreacion = fechaActual
