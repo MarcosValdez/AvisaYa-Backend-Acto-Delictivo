@@ -32,7 +32,9 @@ app.use(morgan(formatMorgan.morganJSONFormat(), {
 app.use('/api', router)
 app.get('/', (req, res) => {
 
-  res.status(200).json({prueba: 'Bienvenidos sean todos ustedes v2'})
+
+  res.status(200).json({prueba: 'holaaaaaaaaaaaaa'})
+
 
 })
 
