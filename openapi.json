@@ -43,8 +43,7 @@
             "description": "ID del acto delictivo a retornar",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string"
             }
           }
         ],
@@ -202,8 +201,7 @@
             "description": "ID del acto delictivo que necesita actualizarse",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string"
             }
           }
         ],
@@ -237,8 +235,7 @@
             "description": "Id del acto delictivo a eliminar",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string"
             }
           }
         ],
