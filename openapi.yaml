@@ -29,8 +29,7 @@ paths:
           description: ID del acto delictivo a retornar
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: Operación exitosa
@@ -125,8 +124,7 @@ paths:
           description: ID del acto delictivo que necesita actualizarse
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '405':
           description: Entrada invalida
@@ -147,8 +145,7 @@ paths:
           description: Id del acto delictivo a eliminar
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '400':
           description: Valor de acto delictivo invalido
